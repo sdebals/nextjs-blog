@@ -1,84 +1,16 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
-import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
-import Date from '../components/date'
 
-// use with md files
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
-    }
-  }
-  
-}
-
-// This function gets called at build time
-/*export async function getStaticProps() {
-  // Call an external API endpoint to get posts
-  const res = await fetch('https://data.stad.gent/api/records/1.0/search/?dataset=stap-naar-de-klas-gent&q=&rows=30')
-  const allPostsData = await res.json()
-  
-    // By returning { props: { posts } }, 
-    // the Blog component
-    // will receive `posts` as a prop at build time
-    return {
-      props: {
-        allPostsData,
-      },
-    }
-  }*/
-
-export default function Home({ allPostsData }) {
-  console.log(allPostsData);
+export default function Home() {
   return (
-    <Layout home>
+    <>
       <Head>
-        <title>{siteTitle}</title>
+        <title>Stap naar de klas | home </title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Hi I'm Sophie</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-
-
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-          </section>
-
-       {/*<section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map((record) => (
-            <li className={utilStyles.listItem} key={record.recordid}>
-              {record.fields.adres}
-              <br />
-              {record.fields.postcode}
-              <br />
-              {record.fields.titel}
-            </li>
-          ))}
-        </ul>
-          </section>*/}
-    </Layout>
+      <h1> homepage</h1>
+      <p>Consequat minim est enim labore dolore veniam elit aliquip. Deserunt proident mollit sunt veniam aliquip consectetur nisi mollit consequat. Non ad ad labore voluptate aliquip anim nostrud labore veniam enim. Ipsum excepteur consequat laborum do. Elit laborum aliquip ullamco ea deserunt voluptate proident culpa ut officia non quis irure.</p>
+      <p>Laborum consectetur culpa ullamco veniam magna pariatur dolor excepteur dolor in. Nisi minim minim adipisicing duis velit cillum ea aliqua amet ex irure. Amet exercitation esse commodo minim proident dolore enim exercitation reprehenderit nostrud ea fugiat voluptate. Dolor eiusmod enim qui ullamco aliquip deserunt ad commodo pariatur consectetur proident. </p>
+      <Link href="/evenementen"><a className="bg-sky-700 text-white p-4 rounded-lg inline-block mt-4">See evenementen lijst</a></Link>
+    </>
   )
 }
